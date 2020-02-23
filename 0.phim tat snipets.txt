@@ -1,0 +1,9 @@
+file-prefrence- user snipet
+
+	"Print to console": {
+		"prefix": "e",
+		"body": [
+			"<%$1%>"
+		],
+		"description": "thẻ đóng mở ejs"
+	}

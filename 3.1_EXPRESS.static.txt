@@ -1,0 +1,39 @@
+static chỉ cần phục vụ các tệp ( tài nguyên tĩnh ) từ đĩa. Bạn cung cấp cho nó một đường dẫn (đôi khi được gọi là điểm gắn kết) và nó phục vụ các tệp trong thư mục đó.
+
+
+Ví dụ, express.static('/var/www')sẽ phục vụ các tệp trong thư mục đó. Vì vậy, một yêu cầu đến máy chủ Node của bạn http://server/file.html sẽ phục vụ /var/www/file.html.
+
+
+	routerlà mã chạy các tuyến đường của bạn. Khi bạn thực hiện app.get('/user', function(req, res) { ... });, đó là hàm routerthực sự gọi hàm gọi lại để xử lý yêu cầu.
+
+Thứ tự mà bạn chuyển mọi thứ để app.usexác định thứ tự mà mỗi phần mềm trung gian được cung cấp cơ hội để xử lý một yêu cầu. Ví dụ: nếu bạn có một tệp được gọi test.htmltrong thư mục tĩnh và tuyến đường:
+
+app.get('/test.html', function(req, res) {
+    res.send('Hello from route handler');
+});
+Cái nào được gửi cho khách hàng yêu cầu http://server/test.html? Bất cứ phần mềm trung gian nào được đưa ra useđầu tiên.
+
+Nếu bạn làm điều này:
+
+app.use(express.static(__dirname + '/public'));
+app.use(app.router);
+--------------------------------------------------------------------------------------------------------
+=> ví dụ:  express.static('public'); sever sẽ lấy mấy thư mục từ trong public ra để sử dụng.
+
+từ trên ta suy ra được : localhost:3000/chi-tiet <=> dirname/public/chi-tiet (trong đó chi-tiet là file EJS render ra, giả sử chi-tiet ứng với index.ejs)
+localhost:3000<<=>>public/mấy thư mục ở trong
+------------
+trường hợp 1: localhost:3000/chi-tiet (lv1) chi-tiet <=> index mã ejs
+ trong file index.ejs ta có link tới: <link rel="stylesheet" href="stylesheets/style.css"> 
+ thì khi ta kiểm tra trên source thấy file index và thư mục stylesheets cùng cấp nhau. và đọc sever sẽ đọc đc file css ở trong stylesheets.
+vì href="stylesheets/style.css" <=> public/stylesheets/style.css
+nếu ta thêm dấu "/"stylesheets thì cũng ko ảnh hưởng vì nó sẽ tạo stylesheet nhỏ hơn index 1 cấp. mà bị giới hạn bởi public rồi. ko nhỏ thêm được nữa. nên chỉ cùng cấp với index thôi.
+--------------------------------------------------------------------------------------
+	=> nó chỉ ảnh hưởng khi đường dẫn level 2 trở lên: localhost:3000/lv1/lv2 . Lúc nãy ở phần source sẽ tạo thêm 1 thư mục có tên là lv1 chứa ( lv2 <=> file ejs để render).
+	+ không dấu "/" stylesheets	+Nếu trong file LV2 có link tới <link rel="stylesheet" href="stylesheets/style.css" <=> thì lúc này sẽ không đọc được vì nó sẽ báo lỗi localhost:3000/lv1/stylesheets/style <=> publlic/lv1/stylesheets/style =>>>>>>>>làm gì có tư mục này. cái này hiểu như là source nó sẽ tạo 1 thư mục stylesheet cùng cấp với lv2 nằm trong mục lv1.
+( dấu ./stylesheets/style.css <=> stylesheets/style.css ) 
+	+ có dấu "/" stylesheets	+ Nếu trong file LV2 có link tới <link rel="stylesheet" href="/stylesheets/style.css" <=> thì lúc này trong source sẽ tạo 1 thư mục stylesheets có cấp tương ứng với  localhost:3000/stylesheets/style.css <=> public/stylesheets/style.css =>>>> đọc được file style.css
+
+-----------------------------------------------------------------------------------------------------------
+router lv3 : localhost:3000/lv1/lv2/lv3
+	nếu trong thư mục ejs lv3 có link tới <link rel="stylesheet" href="stylesheets/style.css"> (không dấu "/") thì nó sẽ báo lỗi localhost:3000/lv1/lv2/stylesheets/style <=> publlic/lv1/lv2/stylesheets/style =>> làm gì có thư mục này. hiểu nôm na là trongn source F12 nó tạo stylesheet cùng cấp thư mục  lv3 nằm trong lv2.

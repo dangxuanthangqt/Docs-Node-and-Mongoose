@@ -1,0 +1,91 @@
+từ view xem click vào chỉnh sửa truyền ID qua router view chỉnh sửa sửa.
+-------------------------
+trong router viewchinh sửa:
+router.get('/viewchinhsua.:id',(req,res,next)=>{
+  var id = chuyen(req.params.id);
+  const findDocuments = function(db, callback) {
+    // Get the documents collection
+    const collection = db.collection('nguoidung');
+    // Find some documents
+    collection.find({_id: id}).toArray(function(err, docs) {
+      assert.equal(err, null);
+      console.log("Found the following records");
+      console.log(docs)
+      callback(docs);
+    });
+  }
+  MongoClient.connect(url, function(err, client) {
+    assert.equal(null, err);
+    console.log("Connected correctly to server");
+  
+    const db = client.db(dbName);
+      findDocuments(db, function(dulieu) {
+        res.render("chinhsua",{title:"Chỉnh sửa thông tin", data:dulieu, id : req.params.id});
+        //console.log(dulieu);
+        client.close();
+      });
+   
+  });
+})
+
+=>>>>>>>> dùng find and filter để tìm id hiện lên chỉnh sửa
+------------
+
+view chỉnh sửa
+   <form action="/update.<%=id%>" method="POST">
+
+                <%data.forEach(element=>{%>
+                    <div class="form-group">
+                  <label for="">User</label>
+                  <input type="text"
+                    class="form-control" name="user" id="" aria-describedby="helpId" placeholder="" value="<%=element.user%>">
+                  <small id="helpId" class="form-text text-muted">Edit UserName</small>
+                </div>
+                <div class="form-group">
+                  <label for="">Password</label>
+                  <input type="text"
+                    class="form-control" name="password" id="" aria-describedby="helpId" placeholder="" value="<%=element.password%>">
+                  <small id="helpId" class="form-text text-muted">Edit password</small>
+                </div>
+                <% var id = element._id%>
+                   
+               <% })%>
+                 <button type="submit" class="btn btn-primary" onclick="confirm('Xác nhận chỉnh sửa!')">Chỉnh sửa</button>
+            </form>
+----------------------
+view chỉnh sửa click vào button chỉnh sửa gửi id qua router update.:id
+
+router.post('/update.:id',(req,res,next)=>{
+  var id = chuyen(req.params.id);
+  var dulieu = {
+    "user":req.body.user,
+    "password":req.body.password
+  }
+
+  const updateDocument = function(db, callback) {
+    // Get the documents collection
+    const collection = db.collection('nguoidung');
+    // Update document where a is 2, set b equal to 1
+    collection.updateOne({ _id : id }
+      , { $set: dulieu }, function(err, result) {
+      assert.equal(err, null);
+      
+      callback(result);
+    });
+  }
+  MongoClient.connect(url, function(err, client) {
+    assert.equal(null, err);
+    console.log("Connected successfully to server");
+  
+    const db = client.db(dbName);
+  
+      updateDocument(db, function() {
+        client.close();
+        res.redirect('/xem');
+      });
+    
+  });
+
+
+})
+

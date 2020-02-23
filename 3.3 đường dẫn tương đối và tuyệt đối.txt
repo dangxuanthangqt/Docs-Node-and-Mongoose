@@ -1,0 +1,8 @@
+Đường dẫn có 2 loại:
+Tương đối (relative path):
+khog co dau cung tinh tu folder hien tai thi phai
+Bắt đầu với ./ --> tính từ folder hiện tại
+Bắt đầu với ../--> tính từ folder trên folder hiện tại 1 bậc
+Tuyệt đối (absolute path):
+
+Bắt đầu với /

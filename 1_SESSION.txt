@@ -1,0 +1,22 @@
+Bản chất session là lưu một cookie có chuỗi ngẫu nhiên (được hash) ở client, phía server nó sẽ lưu một DB riêng với key là giá trị cookie ở client. Nhờ vậy, nó định danh được từng client và biết những session nào thuộc client nào. Session-cookie buộc phải đi chung với nhau và hiện nay chưa có cơ chế hiệu quả hơn để xử lý.
+
+
+npm install express-session
+
+var session = require('express-session')
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  //cookie: { secure: true } => HTTPS not HTTP
+}))
+
+
+tạo: req.session.tên = "Đặng xuân thắng"
+lấy:res.send( req.sesison.tên)
+
+hủy sesson: 
+	req.session.destroy(function(err) {
+  	// cannot access session here
+	})

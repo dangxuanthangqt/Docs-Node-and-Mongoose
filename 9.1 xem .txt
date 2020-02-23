@@ -1,0 +1,34 @@
+var Modelcontact = require('../model/contact')
+
+
+router.get('/xem', function(req, res, next) {
+
+  Modelcontact.find({} , function(err, dulieu){
+    if(err){
+      console.log(err);
+    };
+    res.render('xem', { data: dulieu , title :"Xem" });
+  });
+
+});
+
+------------------
+Luu y quan trong/ ham find() se tra ve 1 mang; nhung find by id lại trả về object
+find doc:  [
+  {
+    _id: 5e120781652f2c27a8972e9c,
+    user: 'dangthang456',
+    password: 'aaaaaaaaaaaaaaa'
+  },
+  {
+    _id: 5e1207a7feeb651818cc54a3,
+    user: 'dangthang456',
+    password: 'a du em oi'
+  },
+  {
+    _id: 5e1207aefeeb651818cc54a4,
+    user: 'dangthang123',
+    password: '0979475'
+  },
+  { _id: 5e12effd00bb7119e0571028, user: 'chayan', password: '123' }
+]

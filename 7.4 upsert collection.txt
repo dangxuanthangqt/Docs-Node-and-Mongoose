@@ -1,0 +1,10 @@
+gia su ta co collection thong.
+
+db.thong.update(
+{"tittle":"dang xuan thang"},
+{$set:{"adu":"abc"}},
+{multi:true, upsert: true} )// mac dinh la upsert false
+
+nếu upsert = false/ hoặc ko có gì => nếu phù hợp với điều kiện, ở $set chưa có trường thì thêm mới. nếu có rồi thì update. Nếu không phù hợp thì không làm gì.
+
+nếu upsert = true/ => nếu phù hợp với điều kiện thì làm như upsert = false. nếu không phù hợp với điều kiện thì tự động thêm 1 document mới với điều kiện và $set

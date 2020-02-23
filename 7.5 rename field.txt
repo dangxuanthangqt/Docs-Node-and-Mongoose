@@ -1,0 +1,16 @@
+gia su ta co collection thong.
+
+db.thong.update(
+{},
+{$rename:{"tittle":"ahihi"}},
+{multi:true}
+)
+// nếu điều kiện không có gì thì nó tự động update hết các  field có tên là tittle thành ahihi trong tất cả các document của collection.
+
+db.thong.update(
+{"id":"1"},
+{$rename:{"tittle":"ahihi"}},
+{multi:true}
+)
+
+// nếu có điều kiện thì nó tự động updatecác  field có tên là tittle thành ahihi trong các document có điều kiện là "id":"1" của collection.

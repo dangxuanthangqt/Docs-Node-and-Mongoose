@@ -1,0 +1,40 @@
+router.get('/viewchinhsua.:idchinhsua',(req,res ,next)=>{
+  var id = req.params.idchinhsua;
+  Modelcontact.findById(id, function (err, dulieu) {
+      res.render('chinhsua', { data: dulieu , title :"Chỉnh sửa" });
+  });
+
+})
+
+data tim được gửi qua là 1 đối tượng. nên ở HTML dùng data.user
+
+
+----------------------------------------
+nhớ là router.POST
+
+router.post('/update.:idupdate', function(req, res, next) {
+  var id2 = req.params.idupdate;
+
+
+  Modelcontact.findById(id2, function (err, dulieu) {
+    //if (err) return handleError(err);
+    console.log(dulieu);
+    dulieu.user = req.body.user;
+    dulieu.password = req.body.password;
+    dulieu.save();
+    res.redirect('/xem')
+  });
+ 
+});
+---------------
+cách 2
+router.post('/update.:idupdate', function(req, res, next) {
+  var id = req.params.idupdate;
+  Modelcontact.findByIdAndUpdate(id, { $set:{ user: req.body.user,password: req.body.password }} ,()=>{
+
+  })
+
+res.redirect('/xem')
+});
+
+ko co set cung duoc

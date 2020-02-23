@@ -1,0 +1,4 @@
+app.get('/hello', function doHello(req, res) {
+  res.send('Hello World!')
+})
+Thì khi đó nếu client thực hiện một GET /hello đến máy chủ, thì khi ấy route sẽ trùng khớp và function doHello sẽ được gọi thực hiện.

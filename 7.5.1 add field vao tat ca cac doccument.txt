@@ -1,0 +1,6 @@
+> db.thong.update(
+... {},
+... {$set:{"adu":"wft"}},
+... {multi:true})
+
+/// khoong co dieu kien

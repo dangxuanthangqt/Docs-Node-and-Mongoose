@@ -1,0 +1,33 @@
+
+
+phai chay tren cmn moi.
+ten duong dan de trong dau nhay
+
+export database:
+
+=>>.\mongodump -d <ten database> -o "dia chi folder"
+
+--------------
+export collection:
+
+=>> .\mongoexport -d <ten database> -c <tencolection> -o "duong dan file json" // tự động đặt tên luôn
+
+---------- 
+import database 
+
+=>> .\mongorestore -d <tendatabase> "duong dan folder"
+
+tên database là tên database nhận . còn đường dẫn folder là đường dẫn chưa databse muốn import
+.\mongorestore -d dangxuanthang "C:\testmongo\thang"
+
+import database ở thang vào dangxuanthang
+
+----
+import collection
+
+=>> .\mongoimport -d <tendatabase> -c <tencollection> --file "tenfolder"
+
+----------------------------------
+
+phai chay tren cmn moi.
+ten duong dan de trong dau nhay

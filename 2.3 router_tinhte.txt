@@ -1,0 +1,3 @@
+router.get(/abc?, callback) =>>> chữ c có thể gõ hoặc không
+router.get(/a(bc)?, callback )=>> chữ bc có thể gõ hoặc không
+router.get(/abc*, callback) =>> sau abc thích gõ gì cũng được

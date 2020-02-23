@@ -1,0 +1,35 @@
+{"a":"b","c":"d","e":"f"}
+
+ta co Collection thong
+db.thong.insert({"a":"b","c":"d","e":"f"})
+muốn hiển thị collection thì ta dùng lệnh:
+db.thong.find()// hiển thị không đẹp;
+db.thong.find().pretty() // hiển thị đẹp;
+----- chen mang binh thuong
+
+	{
+            "id": "2",
+            "tittle":"BBBBBBBBBB",
+            "bigImage":"/images/sp1/2.jpg",
+            "cat":"thong",
+            "duongdanSEO": "Dang-Van-Thong",
+            "des":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "client":"clientB",
+            "role":"roleB",
+            "link":"http://fb.com",
+            "productImages":["/images/sp1/1.jpg","/images/sp1/2.jpg","/images/sp1/3.jpg"]
+        }
+---------------------------------
+var element = {}
+
+> element.a = "thang"
+thang
+> element.b ="thong"
+thong
+> element.c ="hien"
+hien
+> db.thong.insert(element)
+WriteResult({ "nInserted" : 1 })
+
+-------------------------------------
+

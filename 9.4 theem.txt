@@ -1,0 +1,14 @@
+router.get('/them', function(req, res, next) {
+
+  res.render('them', { title: 'Them' });
+});
+router.post('/them', function(req, res, next) {
+
+  var phantu ={
+    user:req.body.user,
+    password:req.body.password
+  }
+  var dulieu1 = new Modelcontact(phantu);
+  dulieu1.save();
+  res.redirect('/xem')
+});

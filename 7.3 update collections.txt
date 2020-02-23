@@ -1,0 +1,11 @@
+giả sử ta có collection thong
+
+
+db.thong.update(
+{"tittle":"CCCCCCCCCC"}, điều kiện 
+{$set:{"tittle":"Đặng Xuân Thắng"}}, $set:  kiểu update đặt lại giá trị cũ; thich update truong nao cung duoc
+{multi: true} update nhiều document 1 lúc trong collection, nếu false thì update 1 document tìm được đầu tiên
+
+
+------------------
+tương tự ta có $unset : xóa trường luôn. multi: true | false tương cmn tự

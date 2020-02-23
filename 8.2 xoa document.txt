@@ -1,0 +1,35 @@
+var chuyen = require('mongodb').ObjectID;
+chuyển ID truyền từ bên html sang thành ObjectID
+-----------------------------------
+
+router.get('/xoa.:id',(req,res,next)=>{
+  var id = chuyen(req.params.id);
+  const removeDocument = function(db, callback) {
+    // Get the documents collection
+    const collection = db.collection('nguoidung');
+    // Delete document where a is 3
+    console.log(id);
+    collection.deleteOne({ _id : id }, function(err, result) {
+      assert.equal(err, null);
+     //
+  
+      callback(result);
+    });
+  }
+  MongoClient.connect(url, function(err, client) {
+    assert.equal(null, err);
+    console.log("Connected successfully to server");
+  
+    const db = client.db(dbName);
+  
+    
+        removeDocument(db, function() {
+          
+          //res.redirect('/xem');
+           client.close();
+           res.redirect('/xem');
+        });
+     
+  });
+
+})

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form action="/ketqua">
+      <input type="text" name="email" value="" placeholder="User">
+      <input type="submit" value="Gui">
+    </form>
+    
+    <h1> Danh sach </h1>
+    <% dulieuJson.sv.forEach(element => {%>
+      
+      <li> <%=element.email %> </li>
+
+    <%});%>
+  </body>
+</html>

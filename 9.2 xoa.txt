@@ -1,0 +1,32 @@
+router.get('/xoa.:idcanxoa', function(req, res, next) {
+  var id = req.params.idcanxoa;
+  Modelcontact.findByIdAndRemove(id).exec(function(){
+    res.redirect('/xem')
+  });
+});
+
+router.get('/xoa.:idcanxoa', function(req, res, next) {
+  var id = req.params.idcanxoa;
+  Modelcontact.findByIdAndRemove(id).exec();
+});
+router.get('/xoa.:idcanxoa', function(req, res, next) {
+  var id = req.params.idcanxoa;
+  Modelcontact.findByIdAndRemove(id, function(){
+})
+res.redirect('/xem')
+});
+
+=>> có callback vô là nó sẽ thực thi
+
+lợi ở chỗ là ko cần phải chuyển objectID
+
+
+
+
+
+personRoutes.route('/delete/:id').get(function (req, res) {
+    Person.findByIdAndRemove({_id: req.params.id}, function(err, person){
+        if(err) res.json(err);
+        else res.json('Successfully removed');
+    });
+});

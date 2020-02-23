@@ -1,0 +1,5 @@
+gia su ta co col thong
+
+db.thong.remove(
+{"tittle":"thang"},
+{justOne: true}) // justOne: true chi xoa 1 document dau tiên; false xóa tất cả các document thỏa mãn điều kiện.

@@ -1,0 +1,22 @@
+{
+    "sv":[
+        { 
+            "id":"1",
+            "name":"thang",
+            "email":"dangxuanthang"
+
+        },
+        { 
+            "id":"2",
+            "name":"hien",
+            "email":"nguyenduchien"
+
+        },
+        { 
+            "id":"3",
+            "name":"thong",
+            "email":"dangvanthong"
+
+        }
+    ]
+}

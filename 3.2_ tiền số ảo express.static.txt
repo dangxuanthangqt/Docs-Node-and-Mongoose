@@ -1,0 +1,15 @@
+
+
+app.use('/static', express.static('public'))
+Lúc này các bạn có thể tải được các file trong thư mục public bằng tiền tố static.
+ 
+ ở trong router ta thiết lập static ở đầu =>> tạo 1 mục static ở source
+router.get('/static/thang', function(req, res, next) {
+  var thamso= req.params.id;
+  res.render('index', {thamso});
+});
+
+ở mấy phần mà có link thì ta thêm static ở đầu:
+ví dụ: <link rel="stylesheet" href="/static/stylesheets/style.css">
+ hiểu nôm na ra : localhost:3000/static/stylesheets/style.csss <=> public/static/stylesheets/style.css =>> static/ là ảo
+ ta có cây thư mục source static chứa stylesheets và thang cùng cấp.

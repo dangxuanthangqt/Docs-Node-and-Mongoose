@@ -1,0 +1,34 @@
+Mở CMD trong : C:\Program Files\MongoDB\Server\4.2\bin
+
+tạo folder C:\data\db
+
+
+trong cmd: .\mongod enter
+
+mở lại cmd: .\mongo enter
+ gõ lệnh show dbs
+
+> show dbs     
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use thang
+switched to db thang
+> show dbs     
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db.createCollection('dangthang')
+{ "ok" : 1 }
+> show dbs     
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+thang   0.000GB
+---------------------------------------------
+use <tên database> nếu có rồi thì dùng. chưa có thì sẽ tạo.
+show dbs : hiển thị tất cả các db.
+db.createCollection('tên bảng'): tạo bảng. nhưng trước khi tạo phải có lệnh use;
+show collections : hiển thị tất cả các bảng trong db;
+
+db.dropDatabase(); xóa db nhưng trước đó phải use trước 

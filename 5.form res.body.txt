@@ -1,0 +1,16 @@
+<input type="text"
+            class="form-control" name="user" id="" aria-describedby="helpId" placeholder="Dang Xuan Thang">
+
+ <input type="password"
+            class="form-control" name="password" id="" aria-describedby="helpId" placeholder="PASSS WORD">
+
+<button type="submit" class="btn btn-primary btn-block">Submit</button>
+
+
+----------------------------------
+router:
+router.post('/dulieu',(req,res,next)=>{
+  var user = req.body.user;
+  var password = req.body.password;
+  res.send(user+password);
+})

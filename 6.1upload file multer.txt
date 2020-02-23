@@ -1,0 +1,40 @@
+1 .----------------------------------------------
+<form action="/action_page_binary.asp" method="post" enctype="multipart/form-data">
+  First name: <input type="text" name="fname"><br>
+  Last name: <input type="text" name="lname"><br>
+  <input type="submit" value="Submit">
+</form>
+2.---------------------------------- 
+npm install --save multer
+3.----------------------------------- config trog router
+
+var multer  = require('multer');
+---
+DiskStorage
+The disk storage engine gives you full control on storing files to disk.
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/tmp/my-uploads')
+  },
+  filename: function (req, file, cb) {
+    //cb(null, file.fieldname + '-' + Date.now())
+	cb(null, Date.now() + '-' + file.originalname  )
+	/// chuyen date now về trước chứ ko đọc được định dạng file jpg
+  }
+})
+ 
+var upload = multer({ storage: storage })
+
+
+
+fieldname	Field name specified in the form	
+originalname	Name of the file on the user's computer
+--------------------------------------
+
+app.post('/profile', upload.single('avatar'), function (req, res, next) {
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+})
+
+('avatar') tên của trường input file

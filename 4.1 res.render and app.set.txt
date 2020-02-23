@@ -1,0 +1,20 @@
+Thiết lập đường dẫn chứa tệp template:
+
+
+app.set('views', folder)
+Trong đó:
+
+views là từ khóa được quy đinh để thiết lập đường dẫn chứa template
+folder là một chuỗi dùng để cung cấp đường dẫn thư mục chứa file template. Mặc định là “./views”
+Thiết lập loại tempalate engine
+
+app.set('view engine', template_engine_name)
+Trong đó.
+
+view engine là từ khóa quy định để thiết lập loại template engine muốn sử dụng.
+template_engine_name tên loại template enigne sẽ sử dụng.
+-------------------------------------------------------------------------------
+
+ở trong thư mục routers. khi dùng res.render ta truyền vào đường dẫn :
+res.render('danhsachsp_daxem/ds.ejs', { title: 'Express' }); (danhsachsp_daxem là thư mục con của Views) kiểu như render nó tính từ Views/danhsachsp_daxem
+

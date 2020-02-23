@@ -1,0 +1,20 @@
+http://localhost:3000/ketqua?email=thang
+
+nguyên tắc là query sẽ lấy giá trị sau dấu ?;
+router.get('/ketqua', function(req, res, next) {
+  var query_email = req.query.email;
+  console.log(query_email);
+  res.render('ketqua', { query_email: query_email});
+});
+
+ở file kết quả: ketqua.ejs
+ <h1>Danh sach tim email co ki tu <%=query_email%> </h1>
+    <% var result = dulieuJson.sv.filter((value, index)=> {
+        return value.email.toLowerCase().indexOf(query_email.toLowerCase()) !== -1;}); %>
+       
+       
+       <% result.forEach(element => { %>
+                <li> <%=element.email %></li>
+        <%})%>
+</body>
+

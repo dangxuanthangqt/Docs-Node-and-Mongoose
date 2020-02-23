@@ -1,0 +1,17 @@
+Dùng dấu (:)tên tham số
+
+
+lấy tham số ta dùng:
+
+req.params.tên tham số, ví dụ: res.send('Them số vừa truyền vào: '+ req.params.id);
+
+hoac
+router.get('/chitiet-:id', function(req, res, next) {
+  var thamso= req.params.id;
+  res.render('chitiet', {thamso});
+});
+
+id lay tu href="chitiet-<%=motsanpham.id%>">
+// lưu ý bên link href không chứa dấu : nhé;
+
+
