@@ -14,5 +14,5 @@ console.log(Error, err.message);
 model mỗi collection ứng với 1 schema || contact.js in model folder
 var mongoose = require('mongoose');
 var mongoose = require('mongoose');
-var contact = new mongoose.Schema({ user: 'string', password: 'string' },{collection: 'contact'});
+var contact = new mongoose.Schema({ user: String, password: String },{collection: 'contact'});
 module.exports = mongoose.model('contact', contact);
